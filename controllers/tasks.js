@@ -4,6 +4,8 @@ const getAllTasks = async (req, res) => {
   try {
     const tasks = await Task.find({});
     res.status(200).json({ tasks });
+    // res.status(200).json({ tasks, amount: tasks.length });
+    // res.status(200).json({ sucess: true, data: { tasks } });
   } catch (error) {
     return res.status(500).json({ msg: error });
   }
@@ -24,7 +26,6 @@ const updateTask = async (req, res) => {
     const { id: taskId } = req.params;
     const { name, completed } = req.body;
 
-    console.log(name, "hhhhhhhh");
     if (!name) {
       return res.status(400).json({ msg: "Please provide all values" });
     }
